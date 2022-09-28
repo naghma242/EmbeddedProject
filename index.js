@@ -40,17 +40,7 @@ wss.on(
     connection.send(data);
   },
   100
-); // Send the data every 100 ms
-
-// If client sends something back
-connection.on("message", function (message) {
-  if (message.type === "utf8") {
-    // Process WebSocket message
-    console.log(
-      "Message from " + request.remoteAddress + " : " + message.data + "\n"
-    );
-  }
-});
+); 
 
 connection.on("close", function (connection) {
   // Close remote connection
