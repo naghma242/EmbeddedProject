@@ -1,5 +1,6 @@
 const SERVER = "http://54.91.87.82:3000";
 var upm = require("jsupm_adxl345");
+window.setInterval(updateServer, 500);
 var adxl = new upm.Adxl345(0);
 var request = require("request");
 
@@ -28,11 +29,12 @@ function updateServer() {
   );
 }
 
-async function sendDataIndefinitely() {
+async function myLoop() {
   while (true) {
-    await new Promise((resolve) => setTimeout(resolve, 5000));
-    updateServer();
+    setTimeout(function () {
+      updateServer();
+    }, 3000);
   }
 }
 
-sendDataIndefinitely();
+myLoop();
