@@ -4,9 +4,12 @@ const port = 3000;
 let data;
 const bodyParser = require("body-parser");
 
+const base = `${__dirname}/public`;
+app.use(express.static("public"));
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(express.static('public'));
+app.use(express.static("public"));
 
 app.post("/", function (req, res) {
   console.log(req.body);
@@ -14,7 +17,7 @@ app.post("/", function (req, res) {
 });
 
 app.get("/", function (req, res) {
-  res.sendFile("graph.html", { root: __dirname });
+  res.sendFile(`${base}/graph.html`);
 });
 
 app.listen(port, () => {
@@ -41,4 +44,4 @@ wss.on(
     connection.send(data);
   },
   100
-); 
+);
