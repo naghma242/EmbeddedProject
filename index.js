@@ -41,9 +41,3 @@ wss.on(
   },
   100
 ); 
-
-connection.on("close", function (connection) {
-  // Close remote connection
-  console.log("Connection from " + request.remoteAddress + " closed\n");
-  clearInterval(gatherData);
-});
