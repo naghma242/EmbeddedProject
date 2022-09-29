@@ -11,7 +11,7 @@ function Main(delay) {
   }, delay);
 }
 
-Main(3000);
+Main(300);
 
 function updateServer() {
   adxl.update();
