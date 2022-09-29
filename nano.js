@@ -4,6 +4,8 @@ var adxl = new upm.Adxl345(0);
 var request = require("request");
 
 function Main(delay) {
+  console.log("Here 1");
+
   setInterval(() => {
     updateServer();
   }, delay);
@@ -34,5 +36,3 @@ function updateServer() {
     }
   });
 }
-
-myLoop();
