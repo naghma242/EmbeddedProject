@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 app.use(express.static("public"));
 
 app.post("/", function (req, res) {
-  console.log(req.body);
+  console.log(req);
   //data = JSON.parse(req.data);
 });
 

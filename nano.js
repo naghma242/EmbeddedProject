@@ -19,7 +19,7 @@ function updateServer() {
   adxl.update();
   var force = adxl.getAcceleration();
   console.log("Here 4");
-  json = {
+  var json = {
     key:
       '{"x": ' +
       force.getitem(0).toFixed(2) +
