@@ -14,6 +14,7 @@ function myLoop() {
 function updateServer() {
   adxl.update();
   var force = adxl.getAcceleration();
+  console.log(force);
   json = {
     key:
       '{"x": ' +
