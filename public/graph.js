@@ -47,7 +47,7 @@ Plotly.newPlot("myDiv", data, layout);
 
 window.WebSocket = window.WebSocket || window.MozWebSocket;
 
-var connection = new WebSocket("ws://127.0.0.1:3001"); // Change to match your own DE10-Nano IP
+var connection = new WebSocket("ws://34.224.165.127:3001"); // Change to match your own DE10-Nano IP
 var messagesPerSecond = 10; // Change to match your server data rate
 var messagesReceived = 0;
 
