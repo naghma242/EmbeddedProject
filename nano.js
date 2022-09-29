@@ -3,16 +3,13 @@ var upm = require("jsupm_adxl345");
 var adxl = new upm.Adxl345(0);
 var request = require("request");
 
-function myLoop() {
-  console.log("Here 1");
-
-  while (true) {
-    setTimeout(function () {
-      console.log("Here 2");
-      updateServer();
-    }, 3000);
-  }
+function Main(delay) {
+  setInterval(() => {
+    updateServer();
+  }, delay);
 }
+
+Main(3000);
 
 function updateServer() {
   console.log("Here 3");
