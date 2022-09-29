@@ -39,11 +39,9 @@ wss = new ws({
   httpServer: server,
 });
 
-wss.on(
-  "request",
-  function (request) {
-    var connection = request.accept(null, request.origin);
+wss.on("request", function (request) {
+  var connection = request.accept(null, request.origin);
+  setInterval(function () {
     connection.send(data);
-  },
-  100
-);
+  }, 100);
+});
