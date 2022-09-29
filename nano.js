@@ -14,11 +14,10 @@ function Main(delay) {
 Main(3000);
 
 function updateServer() {
-  console.log("Here 3");
-
   adxl.update();
   var force = adxl.getAcceleration();
-  console.log("Here 4");
+  force.setitem(2, force.getitem(2) + 0.08); // Z axis is off-center in my unit.
+
   var json = {
     key:
       '{"x": ' +
