@@ -14,26 +14,22 @@ function myLoop() {
 function updateServer() {
   adxl.update();
   var force = adxl.getAcceleration();
-  request.post(
-    SERVER,
-    {
-      json: {
-        key:
-          '{"x": ' +
-          force.getitem(0).toFixed(2) +
-          ', "y": ' +
-          force.getitem(1).toFixed(2) +
-          ', "z": ' +
-          force.getitem(2).toFixed(2) +
-          "}",
-      },
-    },
-    function (error, response, body) {
-      if (!error && response.statusCode == 200) {
-        console.log("SUCCESS");
-      }
+  json = {
+    key:
+      '{"x": ' +
+      force.getitem(0).toFixed(2) +
+      ', "y": ' +
+      force.getitem(1).toFixed(2) +
+      ', "z": ' +
+      force.getitem(2).toFixed(2) +
+      "}",
+  };
+  request.post(SERVER, (data = json), function (error, response, body) {
+    console.log("Uploaded.");
+    if (!error && response.statusCode == 200) {
+      console.log("SUCCESS");
     }
-  );
+  });
 }
 
 myLoop();
