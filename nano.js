@@ -4,6 +4,14 @@ window.setInterval(updateServer, 500);
 var adxl = new upm.Adxl345(0);
 var request = require("request");
 
+async function myLoop() {
+  while (true) {
+    setTimeout(function () {
+      updateServer();
+    }, 3000);
+  }
+}
+
 function updateServer() {
   adxl.update();
   var force = adxl.getAcceleration();
@@ -27,14 +35,6 @@ function updateServer() {
       }
     }
   );
-}
-
-async function myLoop() {
-  while (true) {
-    setTimeout(function () {
-      updateServer();
-    }, 3000);
-  }
 }
 
 myLoop();
