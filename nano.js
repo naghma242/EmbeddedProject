@@ -1,7 +1,7 @@
 const SERVER = "http://34.224.165.127:3000";
 var upm = require("jsupm_adxl345");
 var adxl = new upm.Adxl345(0);
-var request = require("request");
+const axios = require("axios");
 
 function Main(delay) {
   console.log("Here 1");
@@ -29,7 +29,7 @@ function updateServer() {
       force.getitem(2).toFixed(2) +
       "}",
   };
-  request.post(SERVER, (data = json), function (error, response, body) {
+  axios.post(SERVER, json, function (error, response, body) {
     console.log("Uploaded.");
     if (!error && response.statusCode == 200) {
       console.log("SUCCESS");

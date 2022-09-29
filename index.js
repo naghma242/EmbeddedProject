@@ -13,6 +13,7 @@ app.use(express.static("public"));
 
 app.post("/", function (req, res) {
   console.log(req);
+  res.status(200).send("Received");
   //data = JSON.parse(req.data);
 });
 
