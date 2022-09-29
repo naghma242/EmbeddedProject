@@ -14,7 +14,7 @@ app.use(express.static("public"));
 app.post("/", function (req, res) {
   // console.log(req.body);
   res.status(200).send("Received");
-  data = JSON.parse(req.body.key);
+  data = req.body.key;
   console.log(data);
 });
 
