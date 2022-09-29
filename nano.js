@@ -16,7 +16,7 @@ Main(3000);
 function updateServer() {
   adxl.update();
   var force = adxl.getAcceleration();
-  force.setitem(2, force.getitem(2) + 0.08); // Z axis is off-center in my unit.
+  force.setitem(2, force.getitem(2) - 1); // Z axis is off-center in my unit.
 
   var json = {
     key:
