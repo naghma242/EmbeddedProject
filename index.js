@@ -14,7 +14,7 @@ app.use(express.static("public"));
 app.post("/", function (req, res) {
   res.status(200).send("Received");
   data = req.body.key;
-  console.log(Date.now().toString() + "  -  " + data);
+  console.log(Date.now().toISOString() + "  -  " + data);
 });
 
 app.get("/", function (req, res) {
