@@ -47,6 +47,7 @@ var currentlyActive = 0;
 var recentlyMostActive = 0;
 var timeStarted = 0;
 var bufferSkips = 0;
+const bufferSkipLimit = 3;
 
 Plotly.newPlot("myDiv", data, layout);
 
@@ -92,7 +93,7 @@ connection.onmessage = function (message) {
       }
     } else if(currentlyActive > 0) {
       bufferSkips++;
-      if(bufferSkips == 10) { // wait for 10 cycles of inactivity to discontinue current active cycle
+      if(bufferSkips == bufferSkipLimit) { // wait for 10 cycles of inactivity to discontinue current active cycle
         currentlyActive = 0;
         bufferSkips = 0;
         timeStarted = 0;
