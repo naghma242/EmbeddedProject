@@ -80,7 +80,7 @@ connection.onmessage = function (message) {
     };
     
     // Recognize active time
-    if(adxlData.x > 0.1 || adxlData.x < 0.1 || adxlData.y > 0.1 || adxlData.y < 0.1) {
+    if(adxlData.x > 0.1 || adxlData.x < -0.1 || adxlData.y > 0.1 || adxlData.y < -0.1) {
       if(currentlyActive > 0) {
         currentlyActive = Date.now() - timeStarted;
       } else {
