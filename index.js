@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 app.use(express.static("public"));
 
 app.post("/", function (req, res) {
-  // console.log(req.body);
+  console.log(req.body.key);
   res.status(200).send("Received");
   data = req.body.key;
   console.log(data);
