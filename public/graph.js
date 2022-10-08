@@ -47,7 +47,7 @@ var currentlyActive = 0;
 var recentlyMostActive = 0;
 var timeStarted = 0;
 var bufferSkips = 0;
-const bufferSkipLimit = 3;
+const bufferSkipLimit = 10;
 
 Plotly.newPlot("myDiv", data, layout);
 
