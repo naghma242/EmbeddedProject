@@ -43,12 +43,17 @@ var layout = {
   },
 };
 
+var currentlyActive = 0;
+var recentlyMostActive = 0;
+var timeStarted = 0;
+var bufferSkips = 0;
+
 Plotly.newPlot("myDiv", data, layout);
 
 window.WebSocket = window.WebSocket || window.MozWebSocket;
 
-var connection = new WebSocket("ws://34.234.74.60:3001"); // Change to match your own DE10-Nano IP
-var messagesPerSecond = 10; // Change to match your server data rate
+var connection = new WebSocket("ws://34.234.74.60:3001"); // AWS IP
+var messagesPerSecond = 10; 
 var messagesReceived = 0;
 
 connection.onopen = function () {
@@ -73,6 +78,28 @@ connection.onmessage = function (message) {
       x: [[ts], [ts], [ts]],
       y: [[adxlData.x], [adxlData.y], [adxlData.z]],
     };
+    
+    // Recognize active time
+    if(adxlData.x > 0.1 || adxlData.x < 0.1 || adxlData.y > 0.1 || adxlData.y < 0.1) {
+      if(currentlyActive > 0) {
+        currentlyActive = Date.now() - timeStarted;
+      } else {
+        timeStarted = Date.now();
+        currentlyActive = 100; // Start with 100 ms of active time to initialize.
+      }
+      if(currentlyActive > recentlyMostActive) {
+        recentlyMostActive = currentlyActive;
+      }
+    } else if(currentlyActive > 0) {
+      bufferSkips++;
+      if(bufferSkips == 10) { // wait for 10 cycles of inactivity to discontinue current active cycle
+        currentlyActive = 0;
+        bufferSkips = 0;
+        timeStarted = 0;
+      }
+    }
+        
+      
 
     // Extend the current graph, last integer here is the number of X values to keep before discarding old data
     Plotly.extendTraces("myDiv", newData, [0, 1, 2], 60 * messagesPerSecond);
