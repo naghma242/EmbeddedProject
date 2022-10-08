@@ -98,6 +98,8 @@ connection.onmessage = function (message) {
         timeStarted = 0;
       }
     }
+    
+    document.getElementById("ActiveTime").innerHTML = `<center>Currently Active: ${currentlyActive/1000} seconds. <br></br>Longest Recent Activity: ${recentlyMostActive/1000} seconds.`;
         
       
 
