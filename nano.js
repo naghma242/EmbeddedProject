@@ -1,4 +1,4 @@
-const SERVER = "http://34.224.165.127:3000";
+const SERVER = "http://34.234.74.60:3000";
 var upm = require("jsupm_adxl345");
 var adxl = new upm.Adxl345(0);
 const axios = require("axios");
